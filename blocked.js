@@ -7,6 +7,10 @@ const testData = [
   'https://www.google.com',
 ];
 
+const currentURL = window.location.href;
+const optionsUrl = chrome.extension.getURL('blocked.html');
+const content = optionsUrl;
+
 class ItemList {
   constructor(list) {
     this.blockedList = list;
@@ -54,4 +58,6 @@ class ItemList {
   }
 }
 
-const app = new ItemList(['1', '2']);
+chrome.storage.sync.get('blocked', function (data) {
+  const app = new ItemList(JSON.parse(data.blocked));
+});
