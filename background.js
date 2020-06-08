@@ -2,7 +2,7 @@ const currentURL = window.location.href;
 
 const blockedSites = [
   'https://www.dailymail.co.uk',
-  'https://www.reddit.com',
+//   'https://www.reddit.com',
 ];
 
 for (let i = 0; i < blockedSites.length; i++) {
