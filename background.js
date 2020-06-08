@@ -1,9 +1,14 @@
-const testHref = window.location.href;
+const currentURL = window.location.href;
 
-if (testHref.includes('https://www.google.com/')) {
-  window.location.href = 'https://rory.codes';
-} else {
-  console.log('This is fine!');
+const blockedSites = [
+  'https://www.dailymail.co.uk',
+  'https://www.reddit.com',
+];
+
+for (let i = 0; i < blockedSites.length; i++) {
+  if (currentURL.includes(blockedSites[i])) {
+    window.location.href = 'https://rory.codes';
+  } else {
+    console.log('This is fine!');
+  }
 }
-
-console.log(testHref);
