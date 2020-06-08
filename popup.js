@@ -15,7 +15,7 @@ chrome.storage.sync.get('color', function(data) {
 //   };
 
   changeColor.onclick = function() {
-    console.log('hel0l world, we might be getting somewhere')
+    // console.log('hel0l world, we might be getting somewhere')
   };
 
   
