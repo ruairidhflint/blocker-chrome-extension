@@ -1,9 +1,9 @@
 let changeColor = document.getElementById('changeColor');
 
-chrome.storage.sync.get('color', function(data) {
-  changeColor.style.backgroundColor = data.color;
-  changeColor.setAttribute('value', data.color);
-});
+// chrome.storage.sync.get('color', function(data) {
+//   changeColor.style.backgroundColor = data.color;
+//   changeColor.setAttribute('value', data.color);
+// });
 
 // changeColor.onclick = function(element) {
 //     let color = element.target.value;
@@ -15,7 +15,7 @@ chrome.storage.sync.get('color', function(data) {
 //   };
 
   changeColor.onclick = function() {
-    // console.log('hel0l world, we might be getting somewhere')
+    chrome.runtime.openOptionsPage();
   };
 
   
