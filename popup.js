@@ -1,8 +1,21 @@
-console.log('this is popup.js speaking.');
+let changeColor = document.getElementById('changeColor');
 
-document.addEventListener('DOMContentLoaded', testFunc);
+chrome.storage.sync.get('color', function(data) {
+  changeColor.style.backgroundColor = data.color;
+  changeColor.setAttribute('value', data.color);
+});
 
-function testFunc() {
-    const button = document.getElementById('#test123');
-    console.log(button);
-}
+// changeColor.onclick = function(element) {
+//     let color = element.target.value;
+//     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+//       chrome.tabs.executeScript(
+//           tabs[0].id,
+//           {code: 'document.body.style.backgroundColor = "' + color + '";'});
+//     });
+//   };
+
+  changeColor.onclick = function() {
+    console.log('hel0l world, we might be getting somewhere')
+  };
+
+  
