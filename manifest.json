@@ -11,13 +11,21 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "web_accessible_resources": ["blocked.html"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
+  "content_scripts": [
+      {
+          "matches":["http://*/*", "https://*/*"],
+          "js": ["content.js"],
+          "run_at": "document_start"
+      }
+  ],
   "browser_action": {
-    "default_title": "Configure your preferences",
     "default_popup": "popup.html",
+    "default_title": "Configure your preferences",
     "default_icon": {
       "16": "icons/icon16.png",
       "32": "icons/icon32.png",
