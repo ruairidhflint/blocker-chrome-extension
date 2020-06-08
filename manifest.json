@@ -5,24 +5,18 @@
   "description": "A Test Project to Block Websites",
   "short_name": "website_blocker",
   "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
-  "options_page": "options.html",
-  "web_accessible_resources": ["src/options/options.html"],
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "css": ["background.css"],
-      "js": ["background.js", "popup.js"],
-      "run_at": "document_start"
-    }
-  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
   "browser_action": {
-    "default_title": "Does a thing when you do a thing",
+    "default_title": "Configure your preferences",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",
