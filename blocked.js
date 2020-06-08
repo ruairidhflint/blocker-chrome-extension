@@ -1,16 +1,5 @@
 const rootElem = document.getElementById('root');
 
-const testData = [
-  'https://rory.codes',
-  'https://www.dailymail.co.uk',
-  'https://www.reddit.com',
-  'https://www.google.com',
-];
-
-const currentURL = window.location.href;
-const optionsUrl = chrome.extension.getURL('blocked.html');
-const content = optionsUrl;
-
 class ItemList {
   constructor(list) {
     this.blockedList = list;
