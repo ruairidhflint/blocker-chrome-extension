@@ -39,9 +39,17 @@ class ItemList {
       p.textContent = 'Nothing here yet!';
       this.list.append(p);
     } else {
-      blockedList.forEach((todo) => {
+      blockedList.forEach((item) => {
         const li = this.createElement('li', 'list-item');
-        li.textContent = todo;
+        const image = this.createElement('i', 'list-item-image');
+        const deleteButton = this.createElement('button', 'delete=button');
+        image.src = `https://www.google.com/s2/favicons?domain=${item}`;
+        deleteButton.textContent = 'delete';
+
+        li.innerHTML = `${image} ${item} ${deleteButton}`
+        // li.append(image);
+        // li.textContent = item;
+        // li.append(deleteButton);
         this.list.append(li);
       });
     }
@@ -50,6 +58,7 @@ class ItemList {
   addNewItem(newItem) {
     this.blockedList = this.blockedList.concat(newItem);
     this.displayList(this.blockedList);
+    this.input.value = '';
   }
 
   onSubmit(e) {
