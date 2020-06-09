@@ -27,7 +27,12 @@
       "matches": ["http://*/*", "https://*/*"],
       "js": ["blocked.js"],
       "run_at": "document_start"
-    }
+    },
+    {
+        "matches": ["http://*/*", "https://*/*"],
+        "js": ["options.js"],
+        "run_at": "document_start"
+      }
   ],
   "browser_action": {
     "default_popup": "popup.html",
