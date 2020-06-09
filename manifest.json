@@ -1,9 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "Website Blocker",
+  "name": "LeBeouf Blocker",
   "version": "1.0.0",
-  "description": "A Test Project to Block Websites",
-  "short_name": "website_blocker",
+  "description": "Boost your productivity and focus by channeling your inner Shia. Block distracting or harmful websites with a click. ",
   "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
   "icons": {
     "16": "icons/icon16.png",
@@ -24,15 +23,16 @@
       "run_at": "document_start"
     },
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["http://*/*", "https://*/*"],
       "js": ["blocked.js"],
       "run_at": "document_start"
     },
     {
-        "matches": ["http://*/*", "https://*/*"],
-        "js": ["options.js"],
-        "run_at": "document_start"
-      }
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["options.js"],
+      "run_at": "document_start"
+    }
   ],
   "browser_action": {
     "default_popup": "popup.html",
