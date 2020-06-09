@@ -9,7 +9,7 @@ chrome.storage.sync.get('blocked', function (data) {
   if (blockedSites.length) {
     for (let i = 0; i < blockedSites.length; i++) {
       if (currentURL.includes(blockedSites[i])) {
-        window.location.href = content;
+        window.location.assign(content);
       }
     }
   }
