@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
     <title>LeBeouf Blocker | Options</title>
-</head>
-<body>
-    <div id="root-blocked"></div>
+  </head>
+  <body>
+    <div class="root-options" id="root-options">
+      <div class="option-img-container">
+        <img src="/icons/icon128.png" alt="Shia's Face" />
+      </div>
+      <form id="options-form">
+        <input
+          type="text"
+          placeholder="Add Website to Block List (eg. instagram.com)"
+          id="blocked-input"
+          autocomplete="off"
+        />
+      </form>
+    </div>
     <script src="options.js"></script>
-</body>
+  </body>
 </html>
