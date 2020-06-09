@@ -11,3 +11,7 @@
 - Ensure styling is tight and responsive
 
 - Design and style popup - Decide on what functionality it will provide. 
+
+- Write documentation
+
+- Submit to Google Developers for assessment and publishing
