@@ -1,9 +1,7 @@
-const rootElem = document.getElementById('root');
-
 class ItemList {
   constructor(list) {
     this.blockedList = list;
-    this.app = this.getElement('#root');
+    this.app = this.getElement('#root-blocked');
     this.title = this.createElement('h1', 'title');
     this.title.textContent = 'Blocked list';
 
