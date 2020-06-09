@@ -29,7 +29,8 @@
       "run_at": "document_start"
     },
     {
-      "matches": ["http://*/*", "https://*/*"],
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["http://*/*", "https://*/*"],
       "js": ["options.js"],
       "run_at": "document_start"
     }
