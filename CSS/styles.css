@@ -17,7 +17,7 @@ body {
     font-family: 'Anton', sans-serif;
     width: 100vw;
     height: 100vh;
-    background: url(images/shia.gif);
+    background: url(/images/shia.gif);
     background-size: cover;
     display: flex;
     flex-direction: column;

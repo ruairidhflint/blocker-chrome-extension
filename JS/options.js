@@ -1,16 +1,13 @@
 class ItemList {
   constructor(list) {
     this.blockedList = list;
-
     this.app = this.getElement('#root-options');
     this.list = this.createElement('ul', 'list');
     this.form = this.getElement('#options-form');
     this.input = this.getElement('#blocked-input');
 
     this.onSubmit = this.onSubmit.bind(this);
-
     this.form.onsubmit = this.onSubmit;
-
     this.app.append(this.list);
 
     this.displayList(this.blockedList);
@@ -19,13 +16,11 @@ class ItemList {
   createElement(tag, className) {
     const element = document.createElement(tag);
     if (className) element.classList.add(className);
-
     return element;
   }
 
   getElement(selector) {
     const element = document.querySelector(selector);
-
     return element;
   }
 
@@ -46,10 +41,7 @@ class ItemList {
         image.src = `https://www.google.com/s2/favicons?domain=${item}`;
         deleteButton.textContent = 'delete';
 
-        li.innerHTML = `${image} ${item} ${deleteButton}`
-        // li.append(image);
-        // li.textContent = item;
-        // li.append(deleteButton);
+        li.innerHTML = `${image} ${item} ${deleteButton}`;
         this.list.append(li);
       });
     }

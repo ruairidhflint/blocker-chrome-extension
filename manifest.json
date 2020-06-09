@@ -10,33 +10,33 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "options_page": "options.html",
-  "web_accessible_resources": ["blocked.html", "options.html"],
+  "options_page": "/HTML/options.html",
+  "web_accessible_resources": ["/HTML/blocked.html", "/HTML/options.html"],
   "background": {
-    "scripts": ["background.js"],
+    "scripts": ["/JS/background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches": ["http://*/*", "https://*/*"],
-      "js": ["content.js"],
+      "js": ["/JS/content.js"],
       "run_at": "document_start"
     },
     {
       "matches": ["<all_urls>"],
       "exclude_matches": ["http://*/*", "https://*/*"],
-      "js": ["blocked.js"],
+      "js": ["/JS/blocked.js"],
       "run_at": "document_start"
     },
     {
       "matches": ["<all_urls>"],
       "exclude_matches": ["http://*/*", "https://*/*"],
-      "js": ["options.js"],
+      "js": ["/JS/options.js"],
       "run_at": "document_start"
     }
   ],
   "browser_action": {
-    "default_popup": "popup.html",
+    "default_popup": "/HTML/popup.html",
     "default_title": "Configure your preferences",
     "default_icon": {
       "16": "icons/icon16.png",
