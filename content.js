@@ -1,6 +1,6 @@
 const currentURL = window.location.href;
-const optionsUrl = chrome.extension.getURL('blocked.html');
-const content = optionsUrl;
+const blockedURL = chrome.extension.getURL('blocked.html');
+const content = blockedURL;
 
 let blockedSites;
 
