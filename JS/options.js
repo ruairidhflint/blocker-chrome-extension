@@ -7,6 +7,7 @@ class ItemList {
     this.input = this.getElement('#blocked-input');
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
     this.form.onsubmit = this.onSubmit;
     this.app.append(this.list);
 
@@ -36,16 +37,29 @@ class ItemList {
     } else {
       blockedList.forEach((item) => {
         const li = this.createElement('li', 'list-item');
+        li.id = item;
         const span = this.createElement('span', 'content-span');
         span.textContent = item;
         const image = this.createElement('img', 'list-item-image');
         const deleteButton = this.createElement('button', 'delete=button');
         image.src = `https://www.google.com/s2/favicons?domain=${item}`;
         deleteButton.textContent = 'delete';
+        deleteButton.onclick = () => this.deleteItem(item);
         li.append(image, span, deleteButton);
         this.list.append(li);
       });
     }
+  }
+
+  deleteItem(id) {
+    const updatedBlockedList = this.blockedList.filter(item => {
+      return item !== id;
+    });
+    chrome.storage.sync.set(
+      { blocked: JSON.stringify(updatedBlockedList) },
+      function () {},
+    );
+    this.displayList(updatedBlockedList);   
   }
 
   addNewItem(newItem) {
