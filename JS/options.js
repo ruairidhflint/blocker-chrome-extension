@@ -36,12 +36,13 @@ class ItemList {
     } else {
       blockedList.forEach((item) => {
         const li = this.createElement('li', 'list-item');
-        const image = this.createElement('i', 'list-item-image');
+        const span = this.createElement('span', 'content-span');
+        span.textContent = item;
+        const image = this.createElement('img', 'list-item-image');
         const deleteButton = this.createElement('button', 'delete=button');
         image.src = `https://www.google.com/s2/favicons?domain=${item}`;
         deleteButton.textContent = 'delete';
-
-        li.innerHTML = `${image} ${item} ${deleteButton}`;
+        li.append(image, span, deleteButton);
         this.list.append(li);
       });
     }
