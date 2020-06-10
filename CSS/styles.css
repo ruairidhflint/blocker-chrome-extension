@@ -92,3 +92,10 @@ body {
     padding: 0;
     width: 40vw;
 }
+
+.blocked-list-item {
+    display: flex;
+    justify-content: space-between;
+    height: 16px;
+    margin-bottom: 1rem;
+}

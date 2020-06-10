@@ -36,7 +36,7 @@ class ItemList {
       this.list.append(p);
     } else {
       blockedList.forEach((item) => {
-        const li = this.createElement('li', 'list-item');
+        const li = this.createElement('li', 'blocked-list-item');
         li.id = item;
         const span = this.createElement('span', 'content-span');
         span.textContent = item;
@@ -59,7 +59,8 @@ class ItemList {
       { blocked: JSON.stringify(updatedBlockedList) },
       function () {},
     );
-    this.displayList(updatedBlockedList);   
+    this.blockedList = updatedBlockedList;
+    this.displayList(this.blockedList);   
   }
 
   addNewItem(newItem) {
