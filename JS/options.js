@@ -50,6 +50,12 @@ class ItemList {
 
   addNewItem(newItem) {
     this.blockedList = this.blockedList.concat(newItem);
+
+    chrome.storage.sync.set(
+      { blocked: JSON.stringify(this.blockedList) },
+      function () {},
+    );
+
     this.displayList(this.blockedList);
     this.input.value = '';
   }
