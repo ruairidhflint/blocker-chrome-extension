@@ -1,10 +1,10 @@
 # TODO List for LeBeouf Blocker
 
 - Finish JS to render list as items on options page 
-    - Include favicons and button to delete
+    - ~~ Include favicons and button to delete ~~
     - Style accordingly
-    - Connect add method to 'backend'
-    - Implement delete methods
+    - ~~ Connect add method to 'backend' ~~
+    - ~~ Implement delete methods ~~
 
 - Implement logic to only allow valid URLs
 
