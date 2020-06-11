@@ -77,13 +77,17 @@ class ItemList {
 
   onSubmit(e) {
     e.preventDefault();
-    this.addNewItem(this.input.value);
+    if (this.validateURL(this.input.value)) {
+      this.addNewItem(this.input.value);
+    } else {
+      console.log('Invalid URL');
+    }
   }
 
   validateURL(url) {
     const urlRegex = /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/;
 
-    if (urlRegex.match(url)) {
+    if (urlRegex.test(url)) {
       return true;
     } else {
       return false;
