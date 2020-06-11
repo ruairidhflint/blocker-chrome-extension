@@ -9,6 +9,7 @@ class ItemList {
     this.onSubmit = this.onSubmit.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
     this.form.onsubmit = this.onSubmit;
+
     this.app.append(this.list);
 
     this.displayList(this.blockedList);
@@ -72,6 +73,9 @@ class ItemList {
     );
 
     this.displayList(this.blockedList);
+
+    this.input.style.border = '1px solid rgb(230, 230, 230);';
+    this.input.placeholder = 'Add Website to Block List (eg. instagram.com)';
     this.input.value = '';
   }
 
@@ -80,7 +84,10 @@ class ItemList {
     if (this.validateURL(this.input.value)) {
       this.addNewItem(this.input.value);
     } else {
-      console.log('Invalid URL');
+      this.input.value = '';
+      this.input.placeholder = 'Invaild URL';
+      this.input.style.border = '1px solid red';
+      this.input.blur();
     }
   }
 
