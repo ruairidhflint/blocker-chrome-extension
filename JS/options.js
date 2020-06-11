@@ -73,8 +73,7 @@ class ItemList {
     );
 
     this.displayList(this.blockedList);
-
-    this.input.style.border = '1px solid rgb(230, 230, 230);';
+    this.input.style.border = '1px solid rgb(230, 230, 230)';
     this.input.placeholder = 'Add Website to Block List (eg. instagram.com)';
     this.input.value = '';
   }
