@@ -80,13 +80,20 @@ class ItemList {
 
   onSubmit(e) {
     e.preventDefault();
-    if (this.validateURL(this.input.value)) {
-      this.addNewItem(this.input.value);
-    } else {
+    if (this.checkURLRepetition(this.input.value)) {
       this.input.value = '';
-      this.input.placeholder = 'Invaild URL';
+      this.input.placeholder = 'URL already blocked';
       this.input.style.border = '1px solid red';
       this.input.blur();
+    } else {
+      if (this.validateURL(this.input.value)) {
+        this.addNewItem(this.input.value);
+      } else {
+        this.input.value = '';
+        this.input.placeholder = 'Invaild URL';
+        this.input.style.border = '1px solid red';
+        this.input.blur();
+      }
     }
   }
 
@@ -98,6 +105,17 @@ class ItemList {
     } else {
       return false;
     }
+  }
+
+  checkURLRepetition(url) {
+    let repeated = false;
+    for (let i = 0; i < this.blockedList.length; i++) {
+      if (this.blockedList[i].includes(url)) {
+        repeated = true;
+      }
+    }
+
+    return repeated;
   }
 }
 

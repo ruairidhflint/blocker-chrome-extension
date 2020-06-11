@@ -8,6 +8,8 @@
 
 - Implement logic to only allow valid URLs ✓
 
+- Check URL doesn't already exist on submit
+
 - Ensure styling is tight and responsive
 
 - Design and style popup - Decide on what functionality it will provide. 
