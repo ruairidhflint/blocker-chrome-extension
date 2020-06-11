@@ -8,7 +8,7 @@
 
 - Implement logic to only allow valid URLs ✓
 
-- Check URL doesn't already exist on submit
+- Check URL doesn't already exist on submit ✓
 
 - Ensure styling is tight and responsive
 
