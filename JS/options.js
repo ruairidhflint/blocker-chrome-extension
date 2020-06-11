@@ -52,7 +52,7 @@ class ItemList {
   }
 
   deleteItem(id) {
-    const updatedBlockedList = this.blockedList.filter(item => {
+    const updatedBlockedList = this.blockedList.filter((item) => {
       return item !== id;
     });
     chrome.storage.sync.set(
@@ -60,7 +60,7 @@ class ItemList {
       function () {},
     );
     this.blockedList = updatedBlockedList;
-    this.displayList(this.blockedList);   
+    this.displayList(this.blockedList);
   }
 
   addNewItem(newItem) {
@@ -78,6 +78,16 @@ class ItemList {
   onSubmit(e) {
     e.preventDefault();
     this.addNewItem(this.input.value);
+  }
+
+  validateURL(url) {
+    const urlRegex = /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/;
+
+    if (urlRegex.match(url)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 
