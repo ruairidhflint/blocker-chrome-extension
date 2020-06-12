@@ -4,8 +4,8 @@ const content = blockedURL;
 
 let blockedSites;
 
-chrome.storage.sync.get('blocked', function (data) {
-  blockedSites = JSON.parse(data.blocked);
+chrome.storage.sync.get('shiaBlocked', function (data) {
+  blockedSites = JSON.parse(data.shiaBlocked);
   if (blockedSites.length) {
     for (let i = 0; i < blockedSites.length; i++) {
       if (currentURL.includes(blockedSites[i])) {

@@ -32,7 +32,7 @@ class ItemList {
     }
 
     if (blockedList.length === 0) {
-      const p = this.createElement('p', "empty-blocked-list");
+      const p = this.createElement('p', 'empty-blocked-list');
       p.textContent = 'Nothing here yet!';
       this.list.append(p);
     } else {
@@ -42,7 +42,10 @@ class ItemList {
         const span = this.createElement('span', 'blocker-list-text');
         span.textContent = item;
         const image = this.createElement('img', 'blocker-list-img');
-        const deleteButton = this.createElement('button', 'blocker-list-button');
+        const deleteButton = this.createElement(
+          'button',
+          'blocker-list-button',
+        );
         image.src = `https://www.google.com/s2/favicons?domain=${item}`;
         deleteButton.textContent = '-';
         deleteButton.onclick = () => this.deleteItem(item);
@@ -57,7 +60,7 @@ class ItemList {
       return item !== id;
     });
     chrome.storage.sync.set(
-      { blocked: JSON.stringify(updatedBlockedList) },
+      { shiaBlocked: JSON.stringify(updatedBlockedList) },
       function () {},
     );
     this.blockedList = updatedBlockedList;
@@ -68,13 +71,13 @@ class ItemList {
     this.blockedList = this.blockedList.concat(newItem);
 
     chrome.storage.sync.set(
-      { blocked: JSON.stringify(this.blockedList) },
+      { shiaBlocked: JSON.stringify(this.blockedList) },
       function () {},
     );
 
     this.displayList(this.blockedList);
     this.input.style.border = '1px solid rgb(230, 230, 230)';
-    this.input.placeholder = "Add Website to Blocklist eg. instagram.com";
+    this.input.placeholder = 'Add Website to Blocklist eg. instagram.com';
     this.input.value = '';
   }
 
@@ -119,6 +122,6 @@ class ItemList {
   }
 }
 
-chrome.storage.sync.get('blocked', function (data) {
-  const app = new ItemList(JSON.parse(data.blocked));
+chrome.storage.sync.get('shiaBlocked', function (data) {
+  const app = new ItemList(JSON.parse(data.shiaBlocked));
 });

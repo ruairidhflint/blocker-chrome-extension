@@ -42,11 +42,11 @@ function parseURL(statusText) {
 }
 
 function addToBlockList(url) {
-  chrome.storage.sync.get('blocked', function (data) {
-    const oldBlockedList = JSON.parse(data.blocked);
+  chrome.storage.sync.get('shiaBlocked', function (data) {
+    const oldBlockedList = JSON.parse(data.shiaBlocked);
     const newBlockedList = oldBlockedList.concat(url);
     chrome.storage.sync.set(
-      { blocked: JSON.stringify(newBlockedList) },
+      { shiaBlocked: JSON.stringify(newBlockedList) },
       function () {},
     );
   });
