@@ -1,10 +1,11 @@
-let changeColor = document.getElementById('changeColor');
+let toggleOption = document.getElementById('popup-settings-button');
 let testDisplay = document.getElementById('test-display');
 
 let currentURLInPopUp;
-changeColor.onclick = function () {
-  // chrome.runtime.openOptionsPage();
-  testDisplay.textContent = currentURLInPopUp;
+toggleOption.onclick = function (e) {
+  e.preventDefault();
+  chrome.runtime.openOptionsPage();
+  // testDisplay.textContent = currentURLInPopUp;
 };
 
 function getCurrentTabUrl(callback) {
