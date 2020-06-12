@@ -10,7 +10,7 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "options_page": "/HTML/test.html",
+  "options_page": "/HTML/options.html",
   "web_accessible_resources": ["/HTML/blocked.html", "/HTML/options.html"],
   "background": {
     "scripts": ["/JS/background.js"],

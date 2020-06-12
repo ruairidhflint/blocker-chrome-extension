@@ -16,7 +16,7 @@ body {
 
 header {
     max-width: 100vw;
-    height: 4rem;
+    height: 5rem;
     display: flex;
     align-items: center;
     padding: 0 5rem;
@@ -38,12 +38,12 @@ h3 a {
     color: #3a4a4d;
 }
 
-.blocker-content {
+.root-options {
     max-width: 100vw;
     padding: 1rem 5rem;
 }
 
-.blocker-content form {
+.root-options form {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -51,7 +51,7 @@ h3 a {
     height: 50px;
 }
 
-.blocker-content form input {
+.root-options form input {
     display: inline-block;
     width: 630px;
     height: 40px;
@@ -61,7 +61,7 @@ h3 a {
     -webkit-appearance: none;
 }
 
-.blocker-content form button {
+.root-options form button {
     display: inline-block;
     width: 46px;
     height: 46px;
@@ -75,24 +75,25 @@ h3 a {
     font-size: 1.2rem;
 }
 
-.blocker-content form button:hover {
+.root-options form button:hover {
     background-color: rgba(3, 144, 251, 1);
     transition: background-color 0.3s ease-in-out;
     cursor: pointer;
 }
 
-.blocker-content ul {
+.root-options ul {
     list-style: none;
     width: 640px;
     margin: 1.5rem 0;
 }
 
-.blocker-content li {
+.root-options li {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 40px;
+    font-size: 14px; 
 }
 
 .blocker-list-img {

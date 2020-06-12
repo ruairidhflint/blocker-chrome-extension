@@ -3,19 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/CSS/styles.css" />
+    <link rel="stylesheet" href="/CSS/options.css" />
     <title>LeBeouf Blocker | Options</title>
   </head>
   <body>
-    <div class="root-options" id="root-options">
-      <form id="options-form">
-        <input
-          type="text"
-          placeholder="Add Website to Block List (eg. instagram.com)"
-          id="blocked-input"
-          autocomplete="off"
-        />
-      </form>
+    <div class="blocker-root" id="blocker-root">
+      <header>
+        <h1>LeBeouf Blocker</h1>
+        <h3>
+          Built by
+          <a href="https://rory.codes" target="_blank" rel="noreferrer noopener"
+            >Rory Flint</a
+          >
+        </h3>
+      </header>
+      <div class="root-options" id="root-options">
+        <form class="options-form" id="options-form">
+          <input
+            type="text"
+            placeholder="Add Website to Blocklist eg. instagram.com"
+            id="option-input"
+            autocomplete="false"
+          />
+          <button type="submit">+</button>
+        </form>
+      </div>
     </div>
     <script src="../JS/options.js"></script>
   </body>

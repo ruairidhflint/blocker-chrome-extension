@@ -4,7 +4,7 @@ class ItemList {
     this.app = this.getElement('#root-options');
     this.list = this.createElement('ul', 'list');
     this.form = this.getElement('#options-form');
-    this.input = this.getElement('#blocked-input');
+    this.input = this.getElement('#option-input');
 
     this.onSubmit = this.onSubmit.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
@@ -39,12 +39,12 @@ class ItemList {
       blockedList.forEach((item) => {
         const li = this.createElement('li', 'blocked-list-item');
         li.id = item;
-        const span = this.createElement('span', 'content-span');
+        const span = this.createElement('span', 'blocker-list-text');
         span.textContent = item;
-        const image = this.createElement('img', 'list-item-image');
-        const deleteButton = this.createElement('button', 'delete=button');
+        const image = this.createElement('img', 'blocker-list-img');
+        const deleteButton = this.createElement('button', 'blocker-list-button');
         image.src = `https://www.google.com/s2/favicons?domain=${item}`;
-        deleteButton.textContent = 'delete';
+        deleteButton.textContent = '-';
         deleteButton.onclick = () => this.deleteItem(item);
         li.append(image, span, deleteButton);
         this.list.append(li);
@@ -74,7 +74,7 @@ class ItemList {
 
     this.displayList(this.blockedList);
     this.input.style.border = '1px solid rgb(230, 230, 230)';
-    this.input.placeholder = 'Add Website to Block List (eg. instagram.com)';
+    this.input.placeholder = "Add Website to Blocklist eg. instagram.com";
     this.input.value = '';
   }
 
