@@ -13,7 +13,11 @@
 - Ensure styling is tight and responsive ✓
 
 - Design and style popup - Decide on what functionality it will provide. 
-
+    - Ability to go to options site
+    - Display current URL host
+    - Ability to block current URL host (and then reload)
+    - Styled super clean
+    
 - Write documentation
 
 - Heavy commenting and code refactor

@@ -1,5 +1,6 @@
 let changeColor = document.getElementById('changeColor');
 let testDisplay = document.getElementById('test-display');
+
 let currentURLInPopUp;
 changeColor.onclick = function () {
   // chrome.runtime.openOptionsPage();
@@ -19,12 +20,15 @@ function getCurrentTabUrl(callback) {
   });
 }
 
-function renderURL(statusText) {
-  currentURLInPopUp = statusText;
+function parseURL(statusText) {
+  const urlRegex = /^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i;
+  let matches = statusText.match(urlRegex);
+  let parsedDomain = matches && matches[1];
+  currentURLInPopUp = parsedDomain;
 }
 
 document.addEventListener('DOMContentLoaded', function () {
   getCurrentTabUrl(function (url) {
-    renderURL(url);
+    parseURL(url);
   });
 });
