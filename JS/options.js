@@ -32,7 +32,7 @@ class ItemList {
     }
 
     if (blockedList.length === 0) {
-      const p = this.createElement('p');
+      const p = this.createElement('p', "empty-blocked-list");
       p.textContent = 'Nothing here yet!';
       this.list.append(p);
     } else {

@@ -17,6 +17,8 @@
     - Display current URL host ✓
     - Ability to block current URL host (and then reload) ✓
     - Styled super clean ✓ 
+
+- Display message if nothing currently blocked
     
 - Write documentation
 

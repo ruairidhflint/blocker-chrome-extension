@@ -81,6 +81,13 @@ h3 a {
     cursor: pointer;
 }
 
+.empty-blocked-list {
+    width: 100%;
+    margin-top: 50px;
+    padding-left: 6px;
+    color: rgba(58, 74, 77, 1)
+}
+
 .root-options ul {
     list-style: none;
     width: 640px;
