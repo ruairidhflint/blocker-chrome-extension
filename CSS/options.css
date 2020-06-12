@@ -19,7 +19,7 @@ header {
     height: 5rem;
     display: flex;
     align-items: center;
-    padding: 0 5rem;
+    padding: 0 7rem;
     justify-content: space-between;
 }
 
@@ -40,7 +40,7 @@ h3 a {
 
 .root-options {
     max-width: 100vw;
-    padding: 1rem 5rem;
+    padding: 1rem 7rem;
 }
 
 .root-options form {
@@ -92,8 +92,8 @@ h3 a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 40px;
-    font-size: 14px; 
+    height: 45px;
+    font-size: 14px;
 }
 
 .blocker-list-img {
@@ -123,4 +123,32 @@ h3 a {
 .blocker-list-button:hover {
     background-color: rgba(255, 69, 96, 1);
     transition: background-color 0.3s ease-in-out;
+}
+
+@media(max-width: 850px) {
+    .root-options form {
+        width: 500px;
+    }
+    .root-options form input {
+        width: 430px;
+    }
+    .root-options form button {
+        width: 38px;
+        height: 38px;
+    }
+    .root-options ul {
+        width: 445px;
+    }
+}
+
+@media(max-width: 650px) {
+    .root-options form {
+        width: 400px;
+    }
+    .root-options form input {
+        width: 330px;
+    }
+    .root-options ul {
+        width: 345px;
+    }
 }
