@@ -20,8 +20,8 @@
 
 - Display message if nothing currently blocked ✓
     
-- Write documentation
-
 - Heavy commenting and code refactor
+
+- Write documentation
 
 - Submit to Google Developers for assessment and publishing

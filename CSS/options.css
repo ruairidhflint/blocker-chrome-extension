@@ -36,6 +36,12 @@ header h3 {
 h3 a {
     font-size: 0.8rem;
     color: #3a4a4d;
+    transition: opacity 0.2s ease-in-out;
+}
+
+h3 a:hover {
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
 }
 
 .root-options {
