@@ -3,7 +3,7 @@
   "name": "LeBeouf Blocker",
   "version": "1.0.0",
   "description": "Boost your productivity and focus by channeling your inner Shia. Block distracting or harmful websites with a click. ",
-  "permissions": ["activeTab", "declarativeContent", "storage", "<all_urls>"],
+  "permissions": ["activeTab", "tabs", "declarativeContent", "storage", "<all_urls>"],
   "icons": {
     "16": "icons/icon16.png",
     "32": "icons/icon32.png",
@@ -26,6 +26,12 @@
       "matches": ["<all_urls>"],
       "exclude_matches": ["http://*/*", "https://*/*"],
       "js": ["/JS/blocked.js"],
+      "run_at": "document_start"
+    },
+    {
+      "matches": ["<all_urls>"],
+      "exclude_matches": ["http://*/*", "https://*/*"],
+      "js": ["/JS/popup.js"],
       "run_at": "document_start"
     },
     {

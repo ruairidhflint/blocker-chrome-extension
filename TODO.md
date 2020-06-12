@@ -2,7 +2,7 @@
 
 - Finish JS to render list as items on options page 
     - Include favicons and button to delete ✓
-    - Style accordingly
+    - Style accordingly ✓
     - Connect add method to 'backend' ✓
     - Implement delete methods ✓
 
@@ -10,7 +10,7 @@
 
 - Check URL doesn't already exist on submit ✓
 
-- Ensure styling is tight and responsive
+- Ensure styling is tight and responsive ✓
 
 - Design and style popup - Decide on what functionality it will provide. 
 
