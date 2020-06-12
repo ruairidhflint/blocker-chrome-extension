@@ -1,11 +1,11 @@
 let toggleOption = document.getElementById('popup-settings-button');
-let testDisplay = document.getElementById('test-display');
-
+let websiteDisplay = document.getElementById('popup-block-website');
+let faviconDisplay = document.getElementById('popup-block-img');
 let currentURLInPopUp;
+
 toggleOption.onclick = function (e) {
   e.preventDefault();
   chrome.runtime.openOptionsPage();
-  // testDisplay.textContent = currentURLInPopUp;
 };
 
 function getCurrentTabUrl(callback) {
@@ -25,7 +25,15 @@ function parseURL(statusText) {
   const urlRegex = /^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i;
   let matches = statusText.match(urlRegex);
   let parsedDomain = matches && matches[1];
-  currentURLInPopUp = parsedDomain;
+
+  if (parsedDomain) {
+    currentURLInPopUp = parsedDomain;
+    websiteDisplay.textContent = currentURLInPopUp;
+    faviconDisplay.src = `https://www.google.com/s2/favicons?domain=${currentURLInPopUp}`;
+  } else {
+    websiteDisplay.textContent = 'Not available here';
+    faviconDisplay.src = 'https://www.google.com/s2/favicons?domain=google.com';
+  }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
