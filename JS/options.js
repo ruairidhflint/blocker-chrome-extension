@@ -14,18 +14,21 @@ class ItemList {
 
     this.displayList(this.blockedList);
   }
-
+  
+  // Small function to create HTML element
   createElement(tag, className) {
     const element = document.createElement(tag);
     if (className) element.classList.add(className);
     return element;
   }
 
+  // Small function to retrieve item from DOM
   getElement(selector) {
     const element = document.querySelector(selector);
     return element;
   }
 
+  // Loop through current block list and crrate an LI element with favicon etc for each and attach to the DOM
   displayList(blockedList) {
     while (this.list.firstChild) {
       this.list.removeChild(this.list.firstChild);
@@ -55,6 +58,7 @@ class ItemList {
     }
   }
 
+  // Loop through exisitig storage list and remove item matching url
   deleteItem(id) {
     const updatedBlockedList = this.blockedList.filter((item) => {
       return item !== id;
@@ -67,6 +71,7 @@ class ItemList {
     this.displayList(this.blockedList);
   }
 
+  // Add new item to blocked list and chrome storage
   addNewItem(newItem) {
     this.blockedList = this.blockedList.concat(newItem);
 
@@ -81,6 +86,7 @@ class ItemList {
     this.input.value = '';
   }
 
+  // On submit, check validity of URL and pre-existence
   onSubmit(e) {
     e.preventDefault();
     if (this.checkURLRepetition(this.input.value)) {
@@ -100,6 +106,7 @@ class ItemList {
     }
   }
 
+  // Regex to check input is valid URL
   validateURL(url) {
     const urlRegex = /(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/;
 
@@ -110,6 +117,7 @@ class ItemList {
     }
   }
 
+  // Check if submitted URL already exists
   checkURLRepetition(url) {
     let repeated = false;
     for (let i = 0; i < this.blockedList.length; i++) {
@@ -117,7 +125,6 @@ class ItemList {
         repeated = true;
       }
     }
-
     return repeated;
   }
 }
