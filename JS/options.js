@@ -129,6 +129,8 @@ class ItemList {
   }
 }
 
+
+// Get latest iteration from chrome storage and pass it to the consturctor of the list, attaching to the DOM.
 chrome.storage.sync.get('shiaBlocked', function (data) {
   const app = new ItemList(JSON.parse(data.shiaBlocked));
 });
