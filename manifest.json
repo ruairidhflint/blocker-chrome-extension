@@ -21,12 +21,6 @@
       "matches": ["http://*/*", "https://*/*"],
       "js": ["/JS/content.js"],
       "run_at": "document_start"
-    },
-    {
-      "matches": ["<all_urls>"],
-      "exclude_matches": ["http://*/*", "https://*/*"],
-      "js": ["/JS/blocked.js"],
-      "run_at": "document_start"
     }
   ],
   "browser_action": {
