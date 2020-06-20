@@ -33,12 +33,6 @@
       "exclude_matches": ["http://*/*", "https://*/*"],
       "js": ["/JS/popup.js"],
       "run_at": "document_start"
-    },
-    {
-      "matches": ["<all_urls>"],
-      "exclude_matches": ["http://*/*", "https://*/*"],
-      "js": ["/JS/options.js"],
-      "run_at": "document_start"
     }
   ],
   "browser_action": {
