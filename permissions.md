@@ -1,7 +1,8 @@
 # ["activeTab", "tabs", "declarativeContent", "storage", "<all_urls>"],
 
 ## activeTab
-- Necessary to get current URL
+
+- Necessary to get current URL and favicon etc
 
 ## tabs
 
@@ -14,6 +15,7 @@
 - Seems to work fine without
 
 ## storage
+
 - Necessary to keep list of blocked websites
 
 ## <all_urls>
