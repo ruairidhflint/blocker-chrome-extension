@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "LeBeouf Blocker",
+  "name": "LaBeouf Blocker",
   "version": "1.0.0",
   "description": "Boost your productivity and focus by channeling your inner Shia. Block distracting or harmful websites with a click. ",
   "permissions": ["activeTab", "storage"],
