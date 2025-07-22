@@ -1,19 +1,27 @@
-const currentURL = window.location.href;
-const blockedURL = chrome.extension.getURL('/HTML/blocked.html');
-const content = blockedURL;
+// Check if current URL should be blocked
+async function checkAndBlockURL() {
+  try {
+    const currentURL = window.location.href;
+    const blockedURL = chrome.runtime.getURL("HTML/blocked.html");
 
-let blockedSites;
+    // Get blocked sites from storage
+    const data = await chrome.storage.sync.get("shiaBlocked");
+    const blockedSites = JSON.parse(data.shiaBlocked || "[]");
 
-// Parse data from the user's chrome storage and add to blockedSites var
-chrome.storage.sync.get('shiaBlocked', function (data) {
-  blockedSites = JSON.parse(data.shiaBlocked);
-  // Assuming there is content, loop through checking if the current URL matches any of the list items
-  if (blockedSites.length) {
-    for (let i = 0; i < blockedSites.length; i++) {
-      if (currentURL.includes(blockedSites[i])) {
-        // If so, redirect to blocked page
-        window.location.assign(content);
+    // Check if current URL matches any blocked sites
+    if (blockedSites.length > 0) {
+      for (const blockedSite of blockedSites) {
+        if (currentURL.includes(blockedSite)) {
+          // Redirect to blocked page
+          window.location.assign(blockedURL);
+          return;
+        }
       }
     }
+  } catch (error) {
+    console.error("Error checking blocked sites:", error);
   }
-});
+}
+
+// Run the check when the script loads
+checkAndBlockURL();

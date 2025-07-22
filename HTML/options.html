@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/CSS/options.css" />
+    <link rel="stylesheet" href="../CSS/options.css" />
     <title>LaBeouf Blocker | Options</title>
   </head>
   <body>
@@ -17,17 +17,24 @@
           >
         </h3>
       </header>
-      <div class="root-options" id="root-options">
-        <form class="options-form" id="options-form">
+      <main class="root-options" id="root-options">
+        <form class="options-form" id="options-form" role="search">
+          <label for="option-input" class="sr-only"
+            >Add website to blocklist</label
+          >
           <input
             type="text"
             placeholder="Add Website to Blocklist eg. instagram.com"
             id="option-input"
             autocomplete="off"
+            aria-describedby="input-help"
           />
-          <button type="submit">+</button>
+          <button type="submit" aria-label="Add website to blocklist">+</button>
         </form>
-      </div>
+        <div id="input-help" class="sr-only">
+          Enter a domain name like instagram.com or facebook.com
+        </div>
+      </main>
     </div>
     <script src="../JS/options.js"></script>
   </body>

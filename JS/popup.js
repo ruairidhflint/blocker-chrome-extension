@@ -1,74 +1,108 @@
-let toggleOption = document.getElementById('popup-settings-button');
-let websiteDisplay = document.getElementById('popup-block-website');
-let faviconDisplay = document.getElementById('popup-block-img');
-let popupBlockButton = document.getElementById('popup-block-block-button');
+// DOM elements
+const toggleOption = document.getElementById("popup-settings-button");
+const websiteDisplay = document.getElementById("popup-block-website");
+const faviconDisplay = document.getElementById("popup-block-img");
+const popupBlockButton = document.getElementById("popup-block-block-button");
+
 let currentURLInPopUp;
 
 // Event listener to open options page
-toggleOption.onclick = function (e) {
+toggleOption.addEventListener("click", (e) => {
   e.preventDefault();
   chrome.runtime.openOptionsPage();
-};
-
-// Function to use chrome's tab query to get the URL
-function getCurrentTabUrl(callback) {
-  var queryInfo = {
-    active: true,
-    currentWindow: true,
-  };
-
-  chrome.tabs.query(queryInfo, function (tabs) {
-    var tab = tabs[0];
-    var url = tab.url;
-    callback(url);
-  });
-}
-
-// Remove excess url data to preserve just the host
-function parseURL(statusText) {
-  const urlRegex = /^https?\:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i;
-  let matches = statusText.match(urlRegex);
-  let parsedDomain = matches && matches[1];
-
-  // If URL exists, populate the Popup with the URL and add the ability to add the block
-  // functionality to button
-  if (parsedDomain) {
-    currentURLInPopUp = parsedDomain;
-    websiteDisplay.textContent = currentURLInPopUp;
-    faviconDisplay.src = `https://www.google.com/s2/favicons?domain=${currentURLInPopUp}`;
-    popupBlockButton.onclick = () => addToBlockList(currentURLInPopUp);
-  }
-  // Otherwise, display a error message and make button unavailable
-  else {
-    websiteDisplay.textContent = 'Not available here';
-    faviconDisplay.src = 'https://www.google.com/s2/favicons?domain=google.com';
-    popupBlockButton.style.backgroundColor = 'lightgrey';
-    popupBlockButton.disabled = true;
-    popupBlockButton.style.cursor = 'not-allowed';
-  }
-}
-
-// Take current URL from currentURLInPopUp var and add to chrome storage
-function addToBlockList(url) {
-  chrome.storage.sync.get('shiaBlocked', function (data) {
-    const oldBlockedList = JSON.parse(data.shiaBlocked);
-    const newBlockedList = oldBlockedList.concat(url);
-    chrome.storage.sync.set(
-      { shiaBlocked: JSON.stringify(newBlockedList) },
-      function () {},
-    );
-  });
-
-  // Reload current Tab to subsequently show blocked page
-  chrome.tabs.getSelected(null, function (tab) {
-    var code = 'window.location.reload();';
-    chrome.tabs.executeScript(tab.id, { code: code });
-  });
-}
-
-// On load, run functions above to get current URL
-document.addEventListener('DOMContentLoaded', function () {
-  getCurrentTabUrl(function (url) {
-    parseURL(url);
-  });
 });
+
+// Get current tab URL using modern Chrome API
+async function getCurrentTabUrl() {
+  try {
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
+    return tab.url;
+  } catch (error) {
+    console.error("Error getting current tab URL:", error);
+    return null;
+  }
+}
+
+// Parse URL to extract domain
+function parseURL(url) {
+  if (!url) {
+    setErrorState("Not available here");
+    return;
+  }
+
+  const urlRegex = /^https?:\/\/([^\/:?#]+)(?:[\/:?#]|$)/i;
+  const matches = url.match(urlRegex);
+  const parsedDomain = matches && matches[1];
+
+  if (parsedDomain) {
+    setSuccessState(parsedDomain);
+  } else {
+    setErrorState("Not available here");
+  }
+}
+
+// Set success state for valid URL
+function setSuccessState(domain) {
+  currentURLInPopUp = domain;
+  websiteDisplay.textContent = domain;
+  faviconDisplay.src = `https://www.google.com/s2/favicons?domain=${domain}`;
+
+  popupBlockButton.disabled = false;
+  popupBlockButton.style.backgroundColor = "rgba(255, 69, 96, 0.8)";
+  popupBlockButton.style.cursor = "pointer";
+
+  popupBlockButton.onclick = () => addToBlockList(domain);
+}
+
+// Set error state for invalid URL
+function setErrorState(message) {
+  websiteDisplay.textContent = message;
+  faviconDisplay.src = "https://www.google.com/s2/favicons?domain=google.com";
+
+  popupBlockButton.disabled = true;
+  popupBlockButton.style.backgroundColor = "lightgrey";
+  popupBlockButton.style.cursor = "not-allowed";
+  popupBlockButton.onclick = null;
+}
+
+// Add URL to block list
+async function addToBlockList(url) {
+  try {
+    const data = await chrome.storage.sync.get("shiaBlocked");
+    const oldBlockedList = JSON.parse(data.shiaBlocked || "[]");
+    const newBlockedList = [...oldBlockedList, url];
+
+    await chrome.storage.sync.set({
+      shiaBlocked: JSON.stringify(newBlockedList),
+    });
+
+    // Reload current tab to show blocked page
+    const [tab] = await chrome.tabs.query({
+      active: true,
+      currentWindow: true,
+    });
+
+    if (tab) {
+      chrome.tabs.reload(tab.id);
+    }
+  } catch (error) {
+    console.error("Error adding to block list:", error);
+  }
+}
+
+// Initialize popup
+async function initializePopup() {
+  try {
+    const url = await getCurrentTabUrl();
+    parseURL(url);
+  } catch (error) {
+    console.error("Error initializing popup:", error);
+    setErrorState("Error loading page");
+  }
+}
+
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", initializePopup);
