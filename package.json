@@ -1,0 +1,33 @@
+{
+  "name": "labeouf-blocker",
+  "version": "2.0.0",
+  "description": "A Chrome extension to boost productivity by blocking distracting websites with inspirational Shia LaBeouf messages",
+  "main": "manifest.json",
+  "scripts": {
+    "build": "echo 'No build process needed - this is a Chrome extension'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linter configured'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "productivity",
+    "website-blocker",
+    "shia-labeouf",
+    "motivation"
+  ],
+  "author": "Rory Flint <https://rory.codes>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruairidhflint/blocker-chrome-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ruairidhflint/blocker-chrome-extension/issues"
+  },
+  "homepage": "https://chrome.google.com/webstore/detail/labeouf-blocker/jjmhcnkpkpmfifppnggagimcmcolkcee",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+}
