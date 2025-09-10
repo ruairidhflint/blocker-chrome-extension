@@ -2,8 +2,14 @@
 // store the list of blocked websites
 chrome.runtime.onInstalled.addListener(async () => {
   try {
-    await chrome.storage.sync.set({ shiaBlocked: "[]" });
-    console.log("LaBeouf Blocker initialized successfully");
+    // Only initialize if storage doesn't already exist
+    const existingData = await chrome.storage.local.get("shiaBlocked");
+    if (!existingData.shiaBlocked) {
+      await chrome.storage.local.set({ shiaBlocked: "[]" });
+      console.log("LaBeouf Blocker initialized successfully");
+    } else {
+      console.log("LaBeouf Blocker storage already exists");
+    }
   } catch (error) {
     console.error("Failed to initialize storage:", error);
   }

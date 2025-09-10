@@ -1,6 +1,6 @@
 # LaBeouf Blocker
 
-### Version 2.0.0
+### Version 3.0.0
 
 A Chrome extension to boost your productivity and focus by channeling your inner Shia. Block distracting or harmful websites with a click and replace them with an inspirational message.
 

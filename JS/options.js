@@ -73,12 +73,13 @@ class ItemList {
     try {
       const updatedBlockedList = this.blockedList.filter((item) => item !== id);
 
-      await chrome.storage.sync.set({
+      await chrome.storage.local.set({
         shiaBlocked: JSON.stringify(updatedBlockedList),
       });
 
       this.blockedList = updatedBlockedList;
       this.displayList(this.blockedList);
+      console.log("Successfully removed from block list:", id);
     } catch (error) {
       console.error("Error deleting item:", error);
     }
@@ -87,14 +88,28 @@ class ItemList {
   // Add new item to blocked list
   async addNewItem(newItem) {
     try {
-      this.blockedList = [...this.blockedList, newItem];
+      // Normalize the domain before adding
+      const normalizedItem = normalizeDomain(newItem);
 
-      await chrome.storage.sync.set({
+      // Check if already exists (case-insensitive)
+      const exists = this.blockedList.some(
+        (item) => normalizeDomain(item) === normalizedItem
+      );
+
+      if (exists) {
+        this.setInputError("Domain already blocked");
+        return;
+      }
+
+      this.blockedList = [...this.blockedList, normalizedItem];
+
+      await chrome.storage.local.set({
         shiaBlocked: JSON.stringify(this.blockedList),
       });
 
       this.displayList(this.blockedList);
       this.resetInput();
+      console.log("Successfully added to block list:", normalizedItem);
     } catch (error) {
       console.error("Error adding new item:", error);
     }
@@ -140,24 +155,53 @@ class ItemList {
 
   // Validate URL format
   validateURL(url) {
-    // Simple domain validation - allows domains like "instagram.com" or "www.instagram.com"
+    if (!url || typeof url !== "string") return false;
+
+    // More comprehensive domain validation
     const domainRegex =
       /^([a-zA-Z0-9]([a-zA-Z0-9\-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
-    return domainRegex.test(url);
+
+    // Check length constraints
+    if (url.length > 253) return false;
+
+    // Check for valid domain format
+    if (!domainRegex.test(url)) return false;
+
+    // Additional checks for common issues
+    if (url.includes("..") || url.startsWith(".") || url.endsWith("."))
+      return false;
+
+    return true;
   }
 
   // Check if URL already exists in blocked list
   checkURLRepetition(url) {
+    const normalizedUrl = normalizeDomain(url);
     return this.blockedList.some(
-      (item) => item.includes(url) || url.includes(item)
+      (item) => normalizeDomain(item) === normalizedUrl
     );
   }
+}
+
+// Normalize domain for consistent comparison
+function normalizeDomain(domain) {
+  if (!domain) return "";
+
+  // Convert to lowercase and remove www. prefix for comparison
+  let normalized = domain.toLowerCase().trim();
+
+  // Remove www. prefix if present
+  if (normalized.startsWith("www.")) {
+    normalized = normalized.substring(4);
+  }
+
+  return normalized;
 }
 
 // Initialize the app
 async function initializeApp() {
   try {
-    const data = await chrome.storage.sync.get("shiaBlocked");
+    const data = await chrome.storage.local.get("shiaBlocked");
     const blockedList = JSON.parse(data.shiaBlocked || "[]");
     new ItemList(blockedList);
   } catch (error) {

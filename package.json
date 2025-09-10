@@ -1,6 +1,6 @@
 {
   "name": "labeouf-blocker",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A Chrome extension to boost productivity by blocking distracting websites with inspirational Shia LaBeouf messages",
   "main": "manifest.json",
   "scripts": {
